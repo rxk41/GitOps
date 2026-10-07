@@ -8,7 +8,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/YOUR_USERNAME/k8s-apps.git
+    repoURL: https://github.com/rxk41/GitOps.git
     targetRevision: main
     path: order
 
