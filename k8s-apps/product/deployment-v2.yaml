@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-v2
+  namespace: microservices
+  labels:
+    app: product
+    version: v2
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: product
+      version: v2
+
+  template:
+    metadata:
+      labels:
+        app: product
+        version: v2
+
+    spec:
+      containers:
+        - name: product
+          image: hashicorp/http-echo:1.0
+
+          args:
+            - "-text=Hello from Product Service v2 - CANARY"
+            - "-listen=:8080"
+
+          ports:
+            - name: http
+              containerPort: 8080
+
+          resources:
+            requests:
+              cpu: 20m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
