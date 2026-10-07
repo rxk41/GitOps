@@ -1,0 +1,65 @@
+variable "project_id" {
+  description = "Google Cloud project ID"
+  type        = string
+  default     = "k8s-learning-510807"
+}
+
+variable "region" {
+  description = "GCP region"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "zone" {
+  description = "GCP zone"
+  type        = string
+  default     = "us-central1-a"
+}
+
+variable "cluster_name" {
+  description = "GKE cluster name"
+  type        = string
+  default     = "gke-istio-lab"
+}
+
+variable "network_name" {
+  description = "VPC network name"
+  type        = string
+  default     = "gke-istio-vpc"
+}
+
+variable "subnet_name" {
+  description = "GKE subnet name"
+  type        = string
+  default     = "gke-istio-subnet"
+}
+
+variable "node_machine_type" {
+  description = "Machine type for the single lab node"
+  type        = string
+  default     = "e2-medium"
+}
+
+variable "node_count" {
+  description = "Number of nodes in the lab node pool"
+  type        = number
+  default     = 2
+}
+
+variable "billing_account_id" {
+  description = "Optional billing account ID, e.g. 000000-000000-000000"
+  type        = string
+  default     = "01E75E-C464C1-901302"
+}
+
+variable "create_budget" {
+  description = "Create a billing budget for the project"
+  type        = bool
+  default     = false
+}
+
+variable "budget_amount_inr" {
+  description = "Budget threshold in INR"
+  type        = number
+  default     = 10
+}
