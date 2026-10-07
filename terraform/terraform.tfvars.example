@@ -1,0 +1,19 @@
+project_id = "k8s-learning-510807"
+
+region = "us-central1"
+zone   = "us-central1-a"
+
+cluster_name = "gke-istio-lab"
+
+network_name = "gke-istio-vpc"
+subnet_name  = "gke-istio-subnet"
+
+node_machine_type = "e2-medium"
+
+node_count = 1
+
+create_budget = false
+
+billing_account_id = "01E75E-C464C1-901302"
+
+budget_amount_inr = 10
