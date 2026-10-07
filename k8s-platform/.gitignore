@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Local environment files
+.env
+.env.*
+
+# Kubernetes local/temp files
+*.tmp
+*.bak
+
+# Secrets
+*.secret.yaml
+*.secret.yml
