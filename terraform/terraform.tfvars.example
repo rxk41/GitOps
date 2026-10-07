@@ -8,7 +8,7 @@ cluster_name = "gke-istio-lab"
 network_name = "gke-istio-vpc"
 subnet_name  = "gke-istio-subnet"
 
-node_machine_type = "e2-medium"
+node_machine_type = "e2-standard-2"
 
 node_count = 1
 

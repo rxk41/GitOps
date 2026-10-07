@@ -37,7 +37,7 @@ variable "subnet_name" {
 variable "node_machine_type" {
   description = "Machine type for the single lab node"
   type        = string
-  default     = "e2-medium"
+  default     = "e2-standard-2"
 }
 
 variable "node_count" {
