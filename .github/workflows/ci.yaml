@@ -17,20 +17,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v5
-        with:
-          version: latest
+      - name: Install kubeconform
+        run: |
+          curl -L -o kubeconform.tar.gz \
+            https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz
+
+          tar -xzf kubeconform.tar.gz
+          sudo mv kubeconform /usr/local/bin/kubeconform
 
       - name: Validate Kubernetes manifests
         run: |
-          kubectl apply --dry-run=client -f k8s-apps/frontend/
-          kubectl apply --dry-run=client -f k8s-apps/product/
-          kubectl apply --dry-run=client -f k8s-apps/order/
-          kubectl apply --dry-run=client -f k8s-platform/istio/
-          kubectl apply --dry-run=client -f k8s-platform/Gateway/
+          kubeconform \
+            -strict \
+            -summary \
+            -output text \
+            k8s-apps/frontend/*.yaml \
+            k8s-apps/product/*.yaml \
+            k8s-apps/order/*.yaml \
+            k8s-platform/istio/*.yaml
 
-      - name: Show repository structure
+      - name: Validate Istio manifests
         run: |
-          echo "GitOps repository:"
-          find k8s-apps k8s-platform -type f | sort
+          kubeconform \
+            -strict \
+            -summary \
+            -output text \
+            -schema-location default \
+            k8s-platform/Gateway/*.yaml
