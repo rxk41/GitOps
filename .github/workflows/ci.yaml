@@ -1,0 +1,36 @@
+name: Kubernetes CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate Kubernetes Manifests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: latest
+
+      - name: Validate Kubernetes manifests
+        run: |
+          kubectl apply --dry-run=client -f k8s-apps/frontend/
+          kubectl apply --dry-run=client -f k8s-apps/product/
+          kubectl apply --dry-run=client -f k8s-apps/order/
+          kubectl apply --dry-run=client -f k8s-platform/istio/
+          kubectl apply --dry-run=client -f k8s-platform/Gateway/
+
+      - name: Show repository structure
+        run: |
+          echo "GitOps repository:"
+          find k8s-apps k8s-platform -type f | sort
