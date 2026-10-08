@@ -5,6 +5,7 @@ metadata:
   namespace: microservices
   labels:
     app: frontend
+
 spec:
   replicas: 2
 
@@ -20,11 +21,11 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: YOUR_FRONTEND_IMAGE:1.0.0
+          image: nginx:1.29.1
 
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
 
           resources:
             requests:
