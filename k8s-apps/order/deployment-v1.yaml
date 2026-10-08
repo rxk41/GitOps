@@ -8,7 +8,7 @@ metadata:
     version: v1
 
 spec:
-  replicas: 2
+  replicas: 1
 
   selector:
     matchLabels:
@@ -27,7 +27,7 @@ spec:
           image: hashicorp/http-echo:1.0
 
           args:
-            - "-text=Hello from Order Service v1"
+            - "-text=Hello from Order Service: v1"
             - "-listen=:8080"
 
           ports:
