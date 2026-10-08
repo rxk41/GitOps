@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/rxk41/GitOps.git
     targetRevision: main
-    path: product
+    path: k8s-apps/product
 
   destination:
     server: https://kubernetes.default.svc
